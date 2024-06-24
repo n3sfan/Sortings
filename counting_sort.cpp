@@ -2,19 +2,14 @@
 #include "utils.h"
 
 void countingSort(int a[], int n){
-    int output[10];
-    int count[10];
+    int* output = new int[n]; 
     int max = a[0];
 
     for (int i = 1; i < n; i++) {
-        if (a[i] > max)
+      if (a[i] > max)
         max = a[i];
     }
-
-    for (int i = 0; i <= max; ++i) {
-        count[i] = 0;
-    }
-
+    int count[max + 1] = {0};
     for (int i = 0; i < n; i++) {
         count[a[i]]++;
     }
@@ -33,22 +28,18 @@ void countingSort(int a[], int n){
     }
 }
 
-int countingSortComparisions(int a[], int size) {
-    int output[10];
-    int count[10];
-    int max = a[0];
+int countingSortComparisions(int a[], int n) {
     int comparision = 0;
+    int* output = new int[n]; 
+    int max = a[0];
 
-    for (int i = 1; ++comparision && i < size; i++) {
+    for (int i = 1; ++comparision && i < n; i++) {
         if (++comparision && a[i] > max)
         max = a[i];
     }
+    int count[max + 1] = {0};
 
-    for (int i = 0; ++comparision && i <= max; ++i) {
-        count[i] = 0;
-    }
-
-    for (int i = 0; ++comparision && i < size; i++) {
+    for (int i = 0; ++comparision && i < n; i++) {
         count[a[i]]++;
     }
 
@@ -56,12 +47,12 @@ int countingSortComparisions(int a[], int size) {
         count[i] += count[i - 1];
     }
 
-    for (int i = size - 1; ++comparision && i >= 0; i--) {
+    for (int i = n - 1; ++comparision && i >= 0; i--) {
         output[count[a[i]] - 1] = a[i];
         count[a[i]]--;
     }
 
-    for (int i = 0; ++comparision && i < size; i++) {
+    for (int i = 0; ++comparision && i < n; i++) {
         a[i] = output[i];
     }
     return comparision;

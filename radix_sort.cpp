@@ -12,7 +12,7 @@ int getMax(int a[], int n)
 
 void countSort(int a[], int n, int exp)
 {
-    int output[n];
+    int* output = new int[n];
     int count[10] = {0};
 
     for (int i = 0; i < n; i++)
@@ -50,7 +50,7 @@ int getMaxComparision(int a[], int n, int &comparision)
 
 void countSortComparision(int a[], int n, int exp, int &comparision)
 {
-    int output[n];
+    int* output = new int[n];
     int count[10] = {0};
 
     for (int i = 0; ++comparision && i < n; i++){
