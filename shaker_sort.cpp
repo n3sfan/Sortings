@@ -1,13 +1,6 @@
 #include "shaker_sort.h"
 #include "utils.h"
 
-void swap(int &a, int &b)
-{
-    int tmp = a;
-    a = b;
-    b = tmp;
-}
-
 void shakerSort(int a[], int n)
 {
     bool swapped = true;

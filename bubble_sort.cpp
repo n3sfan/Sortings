@@ -24,9 +24,17 @@ int bubbleSortComparisions(int a[], int n)
 {
     int comparisions = 0; 
 
-    for (int i = 0; ++comparisions && i < n - 1; i++)
+    bool swapped;
+    for (int i = 0; ++comparisions && i < n - 1; i++) {
+        swapped = false;
+        
         for (int j = 0; ++comparisions && j < n - i - 1; j++)
             if (++comparisions && a[j] > a[j + 1])
                 swap(a[j], a[j + 1]);
+
+        if (swapped == false)
+            break;
+    }
+
     return comparisions;
 }

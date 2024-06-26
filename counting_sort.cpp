@@ -9,7 +9,7 @@ void countingSort(int a[], int n){
       if (a[i] > max)
         max = a[i];
     }
-    int count[max + 1] = {0};
+    int *count = new int[max + 1]{0};
     for (int i = 0; i < n; i++) {
         count[a[i]]++;
     }
@@ -26,6 +26,9 @@ void countingSort(int a[], int n){
     for (int i = 0; i < n; i++) {
         a[i] = output[i];
     }
+
+    delete [] count;
+    delete [] output;
 }
 
 int countingSortComparisions(int a[], int n) {
@@ -37,7 +40,7 @@ int countingSortComparisions(int a[], int n) {
         if (++comparision && a[i] > max)
         max = a[i];
     }
-    int count[max + 1] = {0};
+    int *count = new int[max + 1]{0};
 
     for (int i = 0; ++comparision && i < n; i++) {
         count[a[i]]++;
@@ -55,5 +58,9 @@ int countingSortComparisions(int a[], int n) {
     for (int i = 0; ++comparision && i < n; i++) {
         a[i] = output[i];
     }
+
+    delete [] count;
+    delete [] output;
+
     return comparision;
 }

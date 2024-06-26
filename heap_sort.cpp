@@ -1,12 +1,5 @@
 #include "heap_sort.h"
-#include "unil.h"
-
-void swap(int &a, int &b)
-{
-    int tmp = a;
-    a = b;
-    b = tmp;
-}
+#include "utils.h"
 
 void heapify(int a[], int i, int size)
 {
@@ -48,7 +41,7 @@ void heapifyComparisions(int a[], int i, int size, int &comparisions)
     }
     if (++comparisions && la != i){
         swap(a[la], a[i]);
-        heapify(a, la, size);
+        heapifyComparisions(a, la, size, comparisions);
     }
 }
 

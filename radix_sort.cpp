@@ -28,6 +28,8 @@ void countSort(int a[], int n, int exp)
 
     for (int i = 0; i < n; i++)
         a[i] = output[i];
+
+    delete [] output;
 }
 
 void radixSort(int a[], int n)
@@ -69,6 +71,8 @@ void countSortComparision(int a[], int n, int exp, int &comparision)
     for (int i = 0; ++comparision && i < n; i++){
         a[i] = output[i];
     }
+
+    delete [] output;
 }
 
 int radixSortComparisions(int a[], int n)
