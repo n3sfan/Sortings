@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
+#include <string>
 
 #include "utils.h"
 #include "quick_sort.h"
@@ -13,6 +15,18 @@ using namespace std;
  * argv: arguments values 
  */
 int main(int argc, char **argv) {
+    if (strcmp(argv[0], "-a") == 0) {
+        char *algo = argv[1];
+
+        if ('0' <= argv[2][0] && argv[2][0] <= '9') { // input size
+            int size = stoi(string(argv[2]));
+        } else { // input file
+            char *inputFile = argv[3];
+        }
+    } else {
+
+    }
+
     // Vi du chay utils.h#benchmark
     ofstream out("output.txt");
 
