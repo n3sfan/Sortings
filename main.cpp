@@ -28,7 +28,10 @@ void printSeparator() {
     cout << '\n';
 }
 
-long long sortByAlgo(const char *algo, int *a, int n) {
+long long benchmarkSortTime(const char *algo, int *b, int n) {
+    int *a = new int[n];
+    memcpy(a, b, n*sizeof(int));
+
     if (strcmp(algo, "selection-sort") == 0) {
         return benchmark(a, n, selectionSort);
     } else if (strcmp(algo, "insertion-sort") == 0) {
@@ -53,10 +56,14 @@ long long sortByAlgo(const char *algo, int *a, int n) {
         return benchmark(a, n, flashSort);
     }
 
+    delete[] a;
     return -1;
 }
 
-long long sortComparisonsByAlgo(char *algo, int *a, int n) {
+long long benchmarkSortComparisons(char *algo, int *b, int n) {
+    int *a = new int[n];
+    memcpy(a, b, n*sizeof(int));
+
     if (strcmp(algo, "selection-sort") == 0) {
         return selectionSortComparisons(a, n);
     } else if (strcmp(algo, "insertion-sort") == 0) {
@@ -80,6 +87,8 @@ long long sortComparisonsByAlgo(char *algo, int *a, int n) {
     } else if (strcmp(algo, "flash-sort") == 0) {
         return flashSortComparisions(a, n);
     }
+
+    delete[] a;
     return -1;
 }
 
@@ -88,11 +97,12 @@ void algorithmModeOrder(char *algo, int n, int order, bool output_time, bool out
     printSeparator();
     int *a;
     GenerateData(a, n, order);
+
     if (output_time) {
-        cout << "Running time: " << sortByAlgo(algo, a, n) << "\n";
+        cout << "Running time: " << benchmarkSortTime(algo, a, n) << "\n";
     }
     if (output_comp) {
-        cout << "Comparisons: " << sortComparisonsByAlgo(algo, a, n) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n) << "\n";
     }
     cout << "\n";
 
@@ -101,9 +111,9 @@ void algorithmModeOrder(char *algo, int n, int order, bool output_time, bool out
 
 void algorithmMode(int argc, char **argv) {
     char *algo = argv[2];
-    for (int i = 0; i < argc; ++i) {
-        cout << argv[i] << "\n";
-    }
+    // for (int i = 0; i < argc; ++i) {
+    //     cout << argv[i] << "\n";
+    // }
 
     if ('1' <= argv[3][0] && argv[3][0] <= '9') { // input size
         int input_size = stoi(string(argv[3]));
@@ -114,8 +124,7 @@ void algorithmMode(int argc, char **argv) {
             cout << "Input size: " << input_size << "\n"; 
             char *output_param = argv[4]; 
             OutputParam param = parseParam(output_param); 
-            
-            printSeparator();
+            cout << "\n";
 
             bool output_time = false, output_comp = false;
             if (param == TIME) {
@@ -161,10 +170,10 @@ void algorithmMode(int argc, char **argv) {
         cout << "Input size: " << n << "\n"; 
         printSeparator(); 
         if (param == TIME || param == BOTH) {  
-            cout << "Running time: " << sortByAlgo(algo, a, n) << "\n";
+            cout << "Running time: " << benchmarkSortTime(algo, a, n) << "\n";
         }
         if (param == COMP || param == BOTH) {
-            cout << "Comparisons: " << sortComparisonsByAlgo(algo, a, n) << "\n";
+            cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n) << "\n";
         }
         cout << "\n";
 
@@ -175,7 +184,7 @@ void algorithmMode(int argc, char **argv) {
 void comparisonMode(int argc, char **argv) {
     char *algo1 = argv[2], *algo2 = argv[3];
     cout << "COMPARE MODE\n";
-    cout << "Algorithm: " << algo1 << " | " << algo2 << "\n";
+    cout << "Algorithm: " << convertToReadable(algo1) << " | " << convertToReadable(algo2) << "\n";
         
     if ('0' <= argv[4][0] && argv[4][0] <= '9') { // input size
         int input_size = stoi(string(argv[4]));
@@ -189,8 +198,8 @@ void comparisonMode(int argc, char **argv) {
         int n = input_size;
         int *a;
         GenerateData(a, n, order);
-        cout << "Running time: " << sortByAlgo(algo1, a, n) << " | " << sortByAlgo(algo2, a, n) << "\n";
-        cout << "Comparisons: " << sortComparisonsByAlgo(algo1, a, n) << " | " << sortComparisonsByAlgo(algo2, a, n) << "\n";
+        cout << "Running time: " << benchmarkSortTime(algo1, a, n) << " | " << benchmarkSortTime(algo2, a, n) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n) << " | " << benchmarkSortComparisons(algo2, a, n) << "\n";
         cout << "\n";
 
         delete[] a;
@@ -202,8 +211,8 @@ void comparisonMode(int argc, char **argv) {
         cout << "Input file: " << input_file << "\n";
         cout << "Input size: " << n << "\n";
         printSeparator();
-        cout << "Running time: " << sortByAlgo(algo1, a, n) << " | " << sortByAlgo(algo2, a, n) << "\n";
-        cout << "Comparisons: " << sortComparisonsByAlgo(algo1, a, n) << " | " << sortComparisonsByAlgo(algo2, a, n) << "\n";
+        cout << "Running time: " << benchmarkSortTime(algo1, a, n) << " | " << benchmarkSortTime(algo2, a, n) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n) << " | " << benchmarkSortComparisons(algo2, a, n) << "\n";
         cout << "\n";
    
         delete[] a;

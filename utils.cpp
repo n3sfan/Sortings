@@ -49,13 +49,13 @@ string convertToReadable(char *algo) {
 string getDataOrderDisplay(DataOrder dataOrder) {
     switch (dataOrder) {
 	case RANDOM:	// ngẫu nhiên
-        return "Random";
+        return "Randomize";
     case SORTED:	// có thứ tự
         return "Sorted";
     case REVERSE:	// có thứ tự ngược
-		return "Reverse";
+		return "Reversed";
 	case NEARLY_SORTED:	// gần như có thứ tự
-        return "Nearly sorted";
+        return "Nearly Sorted";
     default:
         return "";
     }
