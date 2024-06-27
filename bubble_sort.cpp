@@ -20,7 +20,7 @@ void bubbleSort(int a[], int n)
     }
 }
 
-int bubbleSortComparisions(int a[], int n)
+long long bubbleSortComparisons(int a[], int n)
 {
     int comparisions = 0; 
 

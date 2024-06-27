@@ -37,7 +37,7 @@ void mergeSort(int a[], int n) {
     delete [] c;
 }
 
-int mergeSortComparisons(int a[], int n) {
+long long mergeSortComparisons(int a[], int n) {
     int comparisons = 0;
 
     if (++comparisons && n <= 1) return comparisons;

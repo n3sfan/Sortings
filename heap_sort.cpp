@@ -45,7 +45,7 @@ void heapifyComparisions(int a[], int i, int size, int &comparisions)
     }
 }
 
-int heapSortComparisions(int a[], int n)
+long long heapSortComparisons(int a[], int n)
 {
     int comparisions = 0;
     for (int i = n / 2 - 1; ++comparisions && i >= 0; i--){

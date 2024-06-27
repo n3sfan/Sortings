@@ -1,45 +1,39 @@
+#include "files.h"
+
 #include <iostream>
 #include <fstream>
 #include <vector>
 
 using namespace std;
 
-void writeOutput(int *a, int n){
-	ofstream fout("output.txt");
+void writeOutput(const char *output_file, int *a, int n) {
+	ofstream fout(output_file);
     if (!fout.is_open())
     {
         cout << "Can not read this file!";
         return;
     }
+    fout << n << "\n";
 	for(int i = 0; i < n; i++){
 		fout << a[i] << " ";
 	}
 	fout.close();
 }
 
-int *readInput(int &n){
+int *readInput(const char *input_file, int &n) {
     ifstream fin;
-    fin.open("output.txt");
+    fin.open(input_file);
     if (!fin.is_open())
     {
         cout << "Can not read this file!";
         return NULL;
     }
 
-    vector<int> result;
-    int value;
-    while (fin >> value)
-    {
-        result.push_back(value);
+    fin >> n;
+    int *arr = new int[n];
+    for (int i = 0; i < n; ++i) {
+        fin >> arr[i];
     }
     fin.close();
-
-    n = result.size();
-    int *arr = new int[n];
-    for (int i = 0; i < n; ++i)
-    {
-        arr[i] = result[i];
-    }
-
     return arr;
 }

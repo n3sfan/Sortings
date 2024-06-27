@@ -12,7 +12,7 @@ void insertionSort(int a[], int n) {
     }
 }
 
-int insertionSortComparisons(int a[], int n) {
+long long insertionSortComparisons(int a[], int n) {
     int comparisons = 0;
     for (int i = 1; ++comparisons && i < n; ++i) {
         int key = a[i], j = i-1;

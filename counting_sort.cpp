@@ -31,7 +31,7 @@ void countingSort(int a[], int n){
     delete [] output;
 }
 
-int countingSortComparisions(int a[], int n) {
+long long countingSortComparisons(int a[], int n) {
     int comparision = 0;
     int* output = new int[n]; 
     int max = a[0];

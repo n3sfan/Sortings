@@ -31,7 +31,7 @@
       "request": "launch",
       "preLaunchTask": "C/C++: g++.exe build active file",
       "program": "${workspaceFolder}/main.exe",
-      "args": [],
+      "args": ["-c", "quick-sort", "insertion-sort", "100000", "-sorted"],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],

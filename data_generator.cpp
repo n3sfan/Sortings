@@ -18,7 +18,7 @@ void HoanVi(T &a, T &b)
 //-------------------------------------------------
 
 // Hàm phát sinh mảng dữ liệu ngẫu nhiên
-void GenerateRandomData(int a[], int n)
+void GenerateRandomData(int *a, int n)
 {
 	srand((unsigned int)time(NULL));
 
@@ -29,7 +29,7 @@ void GenerateRandomData(int a[], int n)
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự tăng dần
-void GenerateSortedData(int a[], int n)
+void GenerateSortedData(int *a, int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -38,7 +38,7 @@ void GenerateSortedData(int a[], int n)
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự ngược (giảm dần)
-void GenerateReverseData(int a[], int n)
+void GenerateReverseData(int *a, int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -47,7 +47,7 @@ void GenerateReverseData(int a[], int n)
 }
 
 // Hàm phát sinh mảng dữ liệu gần như có thứ tự
-void GenerateNearlySortedData(int a[], int n)
+void GenerateNearlySortedData(int *a, int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -62,8 +62,10 @@ void GenerateNearlySortedData(int a[], int n)
 	}
 }
 
-void GenerateData(int a[], int n, int dataType)
+void GenerateData(int* &a, int n, int dataType)
 {
+	a = new int[n];
+
 	switch (dataType)
 	{
 	case 0:	// ngẫu nhiên

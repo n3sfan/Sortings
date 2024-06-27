@@ -75,7 +75,7 @@ void countSortComparision(int a[], int n, int exp, int &comparision)
     delete [] output;
 }
 
-int radixSortComparisions(int a[], int n)
+long long radixSortComparisions(int a[], int n)
 {
     int comparision = 0;
     int m = getMaxComparision(a, n, comparision);
