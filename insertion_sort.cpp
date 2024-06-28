@@ -13,7 +13,7 @@ void insertionSort(int a[], int n) {
 }
 
 long long insertionSortComparisons(int a[], int n) {
-    int comparisons = 0;
+    long long comparisons = 0;
     for (int i = 1; ++comparisons && i < n; ++i) {
         int key = a[i], j = i-1;
         while (++comparisons && j >= 0 && ++comparisons && a[j] > key) {

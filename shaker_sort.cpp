@@ -29,9 +29,9 @@ void shakerSort(int a[], int n)
     }
 }
 
-int shakerSortComparisions(int a[], int n)
+long long shakerSortComparisions(int a[], int n)
 {
-    int comparisions = 0;
+    long long comparisions = 0;
 
     bool swapped = true;
     int start = 0;

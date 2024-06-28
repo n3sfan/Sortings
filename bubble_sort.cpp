@@ -22,7 +22,7 @@ void bubbleSort(int a[], int n)
 
 long long bubbleSortComparisons(int a[], int n)
 {
-    int comparisions = 0; 
+    long long comparisions = 0; 
 
     bool swapped;
     for (int i = 0; ++comparisions && i < n - 1; i++) {

@@ -17,7 +17,7 @@ void selectionSort(int a[], int n)
 
 long long selectionSortComparisons(int a[], int n)
 {
-    int comparision = 0;
+    long long comparision = 0;
     int min_idx;
     for (int i = 0; ++comparision && i < n - 1; i++) {
         min_idx = i;
