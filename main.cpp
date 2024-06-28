@@ -28,81 +28,107 @@ void printSeparator() {
     cout << '\n';
 }
 
-long long benchmarkSortTime(const char *algo, int *b, int n) {
+long long benchmarkSortTime(const char *algo, int *b, int n, bool printOutput) {
     int *a = new int[n];
     memcpy(a, b, n*sizeof(int));
 
+    long long ans = -1;
     if (strcmp(algo, "selection-sort") == 0) {
-        return benchmark(a, n, selectionSort);
+        ans = benchmark(a, n, selectionSort);
     } else if (strcmp(algo, "insertion-sort") == 0) {
-        return benchmark(a, n, insertionSort);
+        ans = benchmark(a, n, insertionSort);
     } else if (strcmp(algo, "bubble-sort") == 0) {
-        return benchmark(a, n, bubbleSort);
+        ans = benchmark(a, n, bubbleSort);
     } else if (strcmp(algo, "shaker-sort") == 0) {
-        return benchmark(a, n, shakerSort);
+        ans = benchmark(a, n, shakerSort);
     } else if (strcmp(algo, "shell-sort") == 0) {
-        return benchmark(a, n, shellSort);
+        ans = benchmark(a, n, shellSort);
     } else if (strcmp(algo, "heap-sort") == 0) {
-        return benchmark(a, n, heapSort);
+        ans = benchmark(a, n, heapSort);
     } else if (strcmp(algo, "merge-sort") == 0) {
-        return benchmark(a, n, mergeSort);
+        ans = benchmark(a, n, mergeSort);
     } else if (strcmp(algo, "quick-sort") == 0) {
-        return benchmark(a, n, quickSort);
+        ans = benchmark(a, n, quickSort);
     } else if (strcmp(algo, "counting-sort") == 0) {
-        return benchmark(a, n, countingSort);
+        ans = benchmark(a, n, countingSort);
     } else if (strcmp(algo, "radix-sort") == 0) {
-        return benchmark(a, n, radixSort);
+        ans = benchmark(a, n, radixSort);
     } else if (strcmp(algo, "flash-sort") == 0) {
-        return benchmark(a, n, flashSort);
+        ans = benchmark(a, n, flashSort);
+    }
+
+    if (printOutput) {
+        string output_file = "output.txt";
+        writeOutput(output_file.c_str(), a, n);
     }
 
     delete[] a;
-    return -1;
+    return ans;
 }
 
-long long benchmarkSortComparisons(char *algo, int *b, int n) {
+long long benchmarkSortComparisons(char *algo, int *b, int n, bool printOutput) {
     int *a = new int[n];
     memcpy(a, b, n*sizeof(int));
 
+    long long ans = -1;
     if (strcmp(algo, "selection-sort") == 0) {
-        return selectionSortComparisons(a, n);
+        ans = selectionSortComparisons(a, n);
     } else if (strcmp(algo, "insertion-sort") == 0) {
-        return insertionSortComparisons(a, n);
+        ans = insertionSortComparisons(a, n);
     } else if (strcmp(algo, "bubble-sort") == 0) {
-        return bubbleSortComparisons(a, n);
+        ans = bubbleSortComparisons(a, n);
     } else if (strcmp(algo, "shaker-sort") == 0) {
-        return shakerSortComparisions(a, n);
+        ans = shakerSortComparisions(a, n);
     } else if (strcmp(algo, "shell-sort") == 0) {
-        return shellSortComparisons(a, n);
+        ans = shellSortComparisons(a, n);
     } else if (strcmp(algo, "heap-sort") == 0) {
-        return heapSortComparisons(a, n);
+        ans = heapSortComparisons(a, n);
     } else if (strcmp(algo, "merge-sort") == 0) {
-        return mergeSortComparisons(a, n);
+        ans = mergeSortComparisons(a, n);
     } else if (strcmp(algo, "quick-sort") == 0) {
-        return quickSortComparisons(a, n);
+        ans = quickSortComparisons(a, n);
     } else if (strcmp(algo, "counting-sort") == 0) {
-        return countingSortComparisons(a, n);
+        ans = countingSortComparisons(a, n);
     } else if (strcmp(algo, "radix-sort") == 0) {
-        return radixSortComparisions(a, n);
+        ans = radixSortComparisions(a, n);
     } else if (strcmp(algo, "flash-sort") == 0) {
-        return flashSortComparisions(a, n);
+        ans = flashSortComparisions(a, n);
+    }
+
+    if (printOutput) {
+        string output_file = "output.txt";
+        writeOutput(output_file.c_str(), a, n);
     }
 
     delete[] a;
-    return -1;
+    return ans;
 }
 
-void algorithmModeOrder(char *algo, int n, int order, bool output_time, bool output_comp) {
+void algorithmModeOrder(char *algo, int n, int order, bool output_time, bool output_comp, int command) {
     cout << "Input order: " << getDataOrderDisplay((DataOrder) order) << "\n";
     printSeparator();
     int *a;
     GenerateData(a, n, order);
 
+    bool printOutput = false;
+    if (command == 2) {
+        string input_file = "input.txt";
+        writeOutput(input_file.c_str(), a, n);
+        printOutput = true;
+    } else if (command == 3) {
+        string input_file;
+        if (order == 0) input_file = "input_1.txt"; // random
+        else if (order == 3) input_file = "input_2.txt"; //nearly sorted
+        else if (order == 1) input_file = "input_3.txt"; //sort
+        else input_file = "input_4.txt"; // reverse
+        writeOutput(input_file.c_str(), a, n);
+    }
+
     if (output_time) {
-        cout << "Running time: " << benchmarkSortTime(algo, a, n) << "\n";
+        cout << "Running time: " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
     }
     if (output_comp) {
-        cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n, printOutput) << "\n";
     }
     cout << "\n";
 
@@ -136,7 +162,7 @@ void algorithmMode(int argc, char **argv) {
             }
 
             for (int order = RANDOM; ; ++order) { 
-                algorithmModeOrder(algo, input_size, order, output_time, output_comp);
+                algorithmModeOrder(algo, input_size, order, output_time, output_comp, 3);
 
                 if (order == NEARLY_SORTED) {
                     break;
@@ -157,7 +183,7 @@ void algorithmMode(int argc, char **argv) {
             }
 
             cout << "Input size: " << input_size << "\n"; 
-            algorithmModeOrder(algo, input_size, order, output_time, output_comp);
+            algorithmModeOrder(algo, input_size, order, output_time, output_comp, 2);
         }
     } else { // input file
         char *input_file = argv[3];
@@ -169,11 +195,13 @@ void algorithmMode(int argc, char **argv) {
         cout << "Input file: " << input_file << "\n";
         cout << "Input size: " << n << "\n"; 
         printSeparator(); 
+        bool printOutput = true;
         if (param == TIME || param == BOTH) {  
-            cout << "Running time: " << benchmarkSortTime(algo, a, n) << "\n";
+            cout << "Running time: " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
+            printOutput = false;
         }
         if (param == COMP || param == BOTH) {
-            cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n) << "\n";
+            cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n, printOutput) << "\n";
         }
         cout << "\n";
 
@@ -198,8 +226,12 @@ void comparisonMode(int argc, char **argv) {
         int n = input_size;
         int *a;
         GenerateData(a, n, order);
-        cout << "Running time: " << benchmarkSortTime(algo1, a, n) << " | " << benchmarkSortTime(algo2, a, n) << "\n";
-        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n) << " | " << benchmarkSortComparisons(algo2, a, n) << "\n";
+
+        string input_file = "input.txt";
+        writeOutput(input_file.c_str(), a, n);
+
+        cout << "Running time: " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n, false) << " | " << benchmarkSortComparisons(algo2, a, n, false) << "\n";
         cout << "\n";
 
         delete[] a;
@@ -211,8 +243,8 @@ void comparisonMode(int argc, char **argv) {
         cout << "Input file: " << input_file << "\n";
         cout << "Input size: " << n << "\n";
         printSeparator();
-        cout << "Running time: " << benchmarkSortTime(algo1, a, n) << " | " << benchmarkSortTime(algo2, a, n) << "\n";
-        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n) << " | " << benchmarkSortComparisons(algo2, a, n) << "\n";
+        cout << "Running time: " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
+        cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n, false) << " | " << benchmarkSortComparisons(algo2, a, n, false) << "\n";
         cout << "\n";
    
         delete[] a;
