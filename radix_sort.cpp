@@ -40,7 +40,7 @@ void radixSort(int a[], int n)
 }
 
 
-int getMaxComparision(int a[], int n, int &comparision)
+int getMaxComparision(int a[], int n, long long &comparision)
 {
     int mx = a[0];
     for (int i = 1; ++comparision && i < n; i++){
@@ -50,7 +50,7 @@ int getMaxComparision(int a[], int n, int &comparision)
     return mx;
 }
 
-void countSortComparision(int a[], int n, int exp, int &comparision)
+void countSortComparision(int a[], int n, int exp, long long &comparision)
 {
     int* output = new int[n];
     int count[10] = {0};
@@ -77,7 +77,7 @@ void countSortComparision(int a[], int n, int exp, int &comparision)
 
 long long radixSortComparisions(int a[], int n)
 {
-    int comparision = 0;
+    long long comparision = 0;
     int m = getMaxComparision(a, n, comparision);
     for (int exp = 1; ++comparision && m / exp > 0; exp *= 10){
         countSortComparision(a, n, exp, comparision);

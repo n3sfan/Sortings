@@ -1,7 +1,7 @@
 #include "quick_sort.h"
 #include "utils.h"
 
-int partitionComparisons(int a[], int l, int r, int &comparisions) {
+int partitionComparisons(int a[], int l, int r, long long &comparisions) {
     int pivot = a[(l+r)/2];
     int i = l, j = r;
     while (++comparisions && i < j) {
@@ -18,7 +18,7 @@ int partitionComparisons(int a[], int l, int r, int &comparisions) {
 }
 
 long long quickSortComparisons(int a[], int l, int r) {
-    int comparisions = 0; 
+    long long comparisions = 0; 
     
     if (++comparisions && l >= r) 
         return comparisions;

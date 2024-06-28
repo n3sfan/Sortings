@@ -14,8 +14,8 @@ void shellSort(int a[], int n) {
     }
 }
 
-int shellSortComparisons(int a[], int n) {
-    int comparisons = 0;
+long long shellSortComparisons(int a[], int n) {
+    long long comparisons = 0;
     for (int gap = n/2; ++comparisons && gap > 0; gap /= 2) {
         for (int i = gap; ++comparisons && i < n; ++i) {
             int key = a[i], j = i - gap;
