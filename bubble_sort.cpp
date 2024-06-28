@@ -32,7 +32,7 @@ long long bubbleSortComparisons(int a[], int n)
             if (++comparisions && a[j] > a[j + 1])
                 swap(a[j], a[j + 1]);
 
-        if (swapped == false)
+        if (++comparisions && swapped == false)
             break;
     }
 
