@@ -125,7 +125,7 @@ void algorithmModeOrder(char *algo, int n, int order, bool output_time, bool out
     }
 
     if (output_time) {
-        cout << "Running time: " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
+        cout << "Running time (nanosec): " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
     }
     if (output_comp) {
         cout << "Comparisons: " << benchmarkSortComparisons(algo, a, n, printOutput) << "\n";
@@ -197,7 +197,7 @@ void algorithmMode(int argc, char **argv) {
         printSeparator(); 
         bool printOutput = true;
         if (param == TIME || param == BOTH) {  
-            cout << "Running time: " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
+            cout << "Running time (nanosec): " << benchmarkSortTime(algo, a, n, printOutput) << "\n";
             printOutput = false;
         }
         if (param == COMP || param == BOTH) {
@@ -230,7 +230,7 @@ void comparisonMode(int argc, char **argv) {
         string input_file = "input.txt";
         writeOutput(input_file.c_str(), a, n);
 
-        cout << "Running time: " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
+        cout << "Running time (nanosec): " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
         cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n, false) << " | " << benchmarkSortComparisons(algo2, a, n, false) << "\n";
         cout << "\n";
 
@@ -243,7 +243,7 @@ void comparisonMode(int argc, char **argv) {
         cout << "Input file: " << input_file << "\n";
         cout << "Input size: " << n << "\n";
         printSeparator();
-        cout << "Running time: " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
+        cout << "Running time (nanosec): " << benchmarkSortTime(algo1, a, n, false) << " | " << benchmarkSortTime(algo2, a, n, false) << "\n";
         cout << "Comparisons: " << benchmarkSortComparisons(algo1, a, n, false) << " | " << benchmarkSortComparisons(algo2, a, n, false) << "\n";
         cout << "\n";
    

@@ -1,8 +1,24 @@
 #include "quick_sort.h"
 #include "utils.h"
 
+// #include <cstdlib>
+// #include <iostream>
+
+// BEGIN EDIT
+// int median(int a, int b, int c) {
+//     if (b <= a && a <= c || c <= a && a <= b) {
+//         return a;
+//     }
+//     if (a <= b && b <= c || c <= b && b <= a) {
+//         return b; 
+//     }
+//     return c;
+// }
+// END
+
 int partitionComparisons(int a[], int l, int r, long long &comparisions) {
     int pivot = a[(l+r)/2];
+
     int i = l, j = r;
     while (++comparisions && i < j) {
         while (++comparisions && a[i] < pivot) ++i;
@@ -54,8 +70,11 @@ void quickSort(int a[], int l, int r) {
         return;
 
     int p = partition(a, l, r);
-    quickSort(a, l, p);
-    quickSort(a, p+1, r);
+    // cout << a[l] << " " << a[r] << " " << l << " " << r << " " << p << "\n";
+    if (l < p) 
+        quickSort(a, l, p);
+    if (p+1 < r)
+        quickSort(a, p+1, r);
 }
 
 void quickSort(int a[], int n) {

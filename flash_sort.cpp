@@ -1,13 +1,13 @@
 #include "flash_sort.h"
 #include "utils.h"
-#include <iostream>
-#include <cassert>
+
+double kR = 0.1;
 
 void flashSort(int a[], int n) {
     if (n == 0)
         return;
 
-    int m = n / 10;
+    int m = n * kR;
     int anmin = a[0];
     int anmax = a[0];
     int nmax = 0;
@@ -71,6 +71,8 @@ void flashSort(int a[], int n) {
         }
         a[j+1] = v;
     }
+
+    delete[] l;
 }
 
 long long flashSortComparisions(int a[], int n) {
@@ -79,7 +81,7 @@ long long flashSortComparisions(int a[], int n) {
     if (++comparisons && n == 0)
         return comparisons;
 
-    int m = n / 10;
+    int m = n * kR;
     int anmin = a[0];
     int anmax = a[0];
     int nmax = 0;
@@ -144,5 +146,6 @@ long long flashSortComparisions(int a[], int n) {
         a[j+1] = v;
     }
 
+    delete[] l;
     return comparisons;
 }
